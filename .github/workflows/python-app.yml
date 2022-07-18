@@ -40,4 +40,4 @@ jobs:
           git add .
           git commit -m "ファイル更新" -a
           git push
-        f
+        fi
