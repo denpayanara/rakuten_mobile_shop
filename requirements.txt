@@ -1,0 +1,5 @@
+geopandas
+line-bot-sdk
+pandas
+requests
+tweepy
