@@ -34,7 +34,7 @@ df2 = spj[['code', 'name', 'N03_007', 'location.prefecture', 'location.city', 'l
 df_nara = df2[df2['location.prefecture'] == '奈良県'].reset_index(drop=True)
 
 # 前回データ
-df_nara_before = pd.read_csv('shops_nara.csv')
+df_nara_before = pd.read_csv('csv/shops_nara.csv')
 
 # 差分
 df_diff = df_nara[~df_nara['name'].isin(df_nara_before['name'])]
@@ -43,8 +43,6 @@ if len(df_diff) > 0:
 
     import os
 
-    from linebot import LineBotApi
-    from linebot.models import TextSendMessage
     import tweepy
 
     message = f'奈良県にて{len(df_diff)}件の楽天モバイルショップがオープンしました。\n\n'
@@ -59,11 +57,6 @@ if len(df_diff) > 0:
 
     print(message)
 
-    # LINE
-    line_bot_api = LineBotApi(os.environ["LINE_CHANNEL_ACCESS_TOKEN"])
-    # 送信
-    line_bot_api.broadcast(messages = [TextSendMessage(text = message)])
-
     # Twitter
     api_key = os.environ["API_KEY"]
     api_secret = os.environ["API_SECRET_KEY"]
@@ -76,4 +69,3 @@ if len(df_diff) > 0:
     api.update_status(status = message)
 
     df_diff.to_csv('shops_nara.csv', index=False, encoding='utf_8_sig')
-
