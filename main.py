@@ -34,7 +34,7 @@ df2 = spj[['code', 'name', 'N03_007', 'location.prefecture', 'location.city', 'l
 df_nara = df2[df2['location.prefecture'] == '奈良県'].reset_index(drop=True)
 
 # 前回データ
-df_nara_before = pd.read_csv('csv/shops_nara.csv')
+df_nara_before = pd.read_csv('shops_nara.csv')
 
 # 差分
 df_diff = df_nara[~df_nara['name'].isin(df_nara_before['name'])]
@@ -69,3 +69,4 @@ if len(df_diff) > 0:
     api.update_status(status = message)
 
     df_diff.to_csv('shops_nara.csv', index=False, encoding='utf_8_sig')
+
