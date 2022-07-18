@@ -13,9 +13,9 @@ df1 = df0[['code', 'name', 'location.prefecture', 'location.city', 'location.add
 df1.rename(columns={'location.latitude': 'lat', 'location.longitude': 'lng'}, inplace=True)
 
 import geopandas as gpd
-import shutil
+# import shutil
 
-shutil.unpack_archive('N03-20220101_GML_simple.zip', 'data')
+# shutil.unpack_archive('N03-20220101_GML_simple.zip', 'data')
 
 # シェープファイル読込
 gdf0 = gpd.read_file('data/N03-20220101_GML_simple') # 全国
