@@ -68,5 +68,5 @@ if len(df_diff) > 0:
     # 送信
     api.update_status(status = message)
 
-    df_diff.to_csv('shops_nara.csv', index=False, encoding='utf_8_sig')
+    df_nara.to_csv('shops_nara.csv', index=False, encoding='utf_8_sig')
 
