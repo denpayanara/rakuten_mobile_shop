@@ -8,9 +8,12 @@ data = res.json()
 
 df0 = pd.json_normalize(data)
 
-df1 = df0[['code', 'name', 'location.prefecture', 'location.city', 'location.address', 'location.building_name',  'contact_info.phone', 'regular_timings.open_time', 'regular_timings.end_time', 'start_date', 'location.latitude', 'location.longitude',]].copy()
-
-df1.rename(columns={'location.latitude': 'lat', 'location.longitude': 'lng'}, inplace=True)
+df1 = pd.concat(
+    [
+        df0[['code', 'name', 'location.prefecture', 'location.city', 'location.address', 'location.building_name', 'contact_info.phone', 'regular_timings.open_time', 'regular_timings.end_time', 'start_date']],
+        df0[['location.latitude', 'location.longitude']].replace('([^\d\.])', '', regex=True).rename(columns={'location.latitude': 'lat', 'location.longitude': 'lng'})
+    ], axis=1
+)
 
 import geopandas as gpd
 # import shutil
@@ -69,4 +72,3 @@ if len(df_diff) > 0:
     api.update_status(status = message)
 
     df_nara.to_csv('shops_nara.csv', index=False, encoding='utf_8_sig')
-
