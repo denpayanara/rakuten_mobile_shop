@@ -61,14 +61,14 @@ if len(df_diff) > 0:
     print(message)
 
     # Twitter
-    api_key = os.environ["API_KEY"]
-    api_secret = os.environ["API_SECRET_KEY"]
-    access_token = os.environ["ACCESS_TOKEN"]
-    access_token_secret = os.environ["ACCESS_TOKEN_SECRET"]
-    auth = tweepy.OAuthHandler(api_key, api_secret)
-    auth.set_access_token(access_token, access_token_secret)
-    api = tweepy.API(auth)
-    # 送信
-    api.update_status(status = message)
+    # api_key = os.environ["API_KEY"]
+    # api_secret = os.environ["API_SECRET_KEY"]
+    # access_token = os.environ["ACCESS_TOKEN"]
+    # access_token_secret = os.environ["ACCESS_TOKEN_SECRET"]
+    # auth = tweepy.OAuthHandler(api_key, api_secret)
+    # auth.set_access_token(access_token, access_token_secret)
+    # api = tweepy.API(auth)
+    # # 送信
+    # api.update_status(status = message)
 
     df_nara.to_csv('shops_nara.csv', index=False, encoding='utf_8_sig')
